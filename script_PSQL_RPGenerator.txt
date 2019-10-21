@@ -1,0 +1,74 @@
+
+CREATE TABLE item (
+    id SERIAL PRIMARY KEY ,
+    nome VARCHAR UNIQUE ,
+    tipo VARCHAR NOT NULL ,
+    preco INTEGER NOT NULL DEFAULT 0 ,
+    efeito INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE pessoa(
+  id SERIAL PRIMARY KEY ,
+  nome VARCHAR NOT NULL ,
+  vida INTEGER default 1 NOT NULL ,
+  mana INTEGER default 1 NOT NULL ,
+  nivel INTEGER default 1 NOT NULL ,
+  forca INTEGER default 0 NOT NULL ,
+  inteligencia INTEGER default 0 NOT NULL ,
+  destreza INTEGER default 0 NOT NULL ,
+  sabedoria INTEGER default 0 NOT NULL ,
+  carisma INTEGER default 0 NOT NULL ,
+  constituicao INTEGER default 0 NOT NULL
+);
+
+CREATE TABLE inventario (
+    id SERIAL PRIMARY KEY ,
+    dinheiro INTEGER NOT NULL
+);
+
+CREATE TABLE item_link( -- Os itens cadastrados podem estar em vários inventários.
+    id SERIAL PRIMARY KEY ,
+    id_item INTEGER NOT NULL  ,
+    id_inventario INTEGER NOT NULL ,
+    FOREIGN KEY (id_item) REFERENCES item(id) ,
+    FOREIGN KEY (id_inventario) REFERENCES inventario(id)
+
+);
+
+CREATE TABLE classe (
+    id SERIAL PRIMARY KEY ,
+    enum_classe VARCHAR NOT NULL ,
+    vidapornivel INTEGER NOT NULL DEFAULT 0,
+    manapornivel INTEGER NOT NULL DEFAULT 0
+);
+
+CREATE TABLE habilidade (
+    id SERIAL PRIMARY KEY ,
+    id_classe INTEGER DEFAULT NULL,
+    nome VARCHAR NOT NULL UNIQUE ,
+    tipo VARCHAR NOT NULL ,
+    custo INTEGER NOT NULL ,
+    duracao INTEGER NOT NULL ,
+    efeito INTEGER NOT NULL ,
+    descricao VARCHAR ,
+    FOREIGN KEY (id_classe) REFERENCES classe (id)
+);
+
+CREATE TABLE personagem (
+    id SERIAL PRIMARY KEY ,
+    id_pessoa INTEGER NOT NULL UNIQUE ,
+    id_classe INTEGER NOT NULL ,
+    id_inventario INTEGER NOT NULL UNIQUE ,
+    id_armadura INTEGER NOT NULL ,
+    id_arma INTEGER NOT NULL ,
+    vida_atual INTEGER NOT NULL ,
+    mana_atual INTEGER NOT NULL ,
+    bba INTEGER NOT NULL DEFAULT 1,
+    ca INTEGER NOT NULL DEFAULT 1 ,
+    FOREIGN KEY (id_pessoa) REFERENCES pessoa(id) ,
+    FOREIGN KEY (id_classe) REFERENCES classe(id) ,
+    FOREIGN KEY (id_inventario) REFERENCES inventario(id) ,
+    FOREIGN KEY (id_armadura) REFERENCES item (id) ,
+    FOREIGN KEY (id_arma) REFERENCES item (id)
+);
+
