@@ -17,6 +17,7 @@ public class Arma extends Item implements Cloneable {
     }
 
     //Retorna uma instancia atualizada de personagem.
+    //Adicionar erro critico
 
     public Personagem utilizar(Personagem persn) {
         if (persn.getArmado().equals(Boolean.FALSE)){

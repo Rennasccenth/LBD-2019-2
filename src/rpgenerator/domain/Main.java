@@ -2,12 +2,9 @@ package rpgenerator.domain;
 
 import rpgenerator.domain.dao.*;
 import rpgenerator.domain.dao.implementa.*;
-import rpgenerator.domain.entidades.Classe;
+import rpgenerator.domain.entidades.*;
 import rpgenerator.domain.entidades.Enums.ClasseEnum;
 import rpgenerator.domain.entidades.Enums.HabilidadeEnum;
-import rpgenerator.domain.entidades.Habilidade;
-import rpgenerator.domain.entidades.Item;
-import rpgenerator.domain.entidades.Personagem;
 import rpgenerator.domain.entidades.itens.*;
 
 import java.util.Scanner;
@@ -21,7 +18,9 @@ public class Main {
         IPersonagemDAO bancoPersonagem = new PersonagemDAOImplPostgreSQL();
         IInventarioDAO bancoInventario = new InventarioDAOImplPostgreSQL();
         IHabilidadeDAO bancoHabilidade = new HabilidadeDAOImplPostgreSQL();
+        Menu m = new Menu();
         Scanner t = new Scanner(System.in);
+
 
         int opcao = 0;
         do {
@@ -38,29 +37,40 @@ public class Main {
 
             switch(opcao){
                 case 1:
-                    System.out.println("1- Inserir");
-                    System.out.println("2- Remover");
-                    System.out.println("3- Atualizar");
-                    System.out.println("4- Exibir");
+                    System.out.println("    PESSOAS");
+                    m.mostrarMenu();
+
+                    switch(opcao){
+                        case 1: Pessoa p = new Pessoa();
+                                bancoPessoa.inserir(p.preenchePessoa());
+
+                        case 2: Scanner t = new Scanner(System.in);
+                                bancoPessoa.remover(t.nextInt());
+                    }
 
                     break;
                 case 2:
-                    System.out.println("\n \nOpção 2\n ");
+                    System.out.println("    HABILIDADES");
+                    m.mostrarMenu();
                     break;
                 case 3:
-                    System.out.println("\n \nOpção 3\n ");
+                    System.out.println("    CLASSES");
+                    m.mostrarMenu();
                     break;
                 case 4:
-                    System.out.println("\n \nOpção 4\n ");
+                    System.out.println("    ITEM");
+                    m.mostrarMenu();
                     break;
                 case 5:
-                    System.out.println("\n \nOpção 5\n ");
+                    System.out.println("    INVENTÁRIO");
+                    m.mostrarMenu();
                     break;
                 case 6:
-                    System.out.println("\n \nOpção 6\n ");
+                    System.out.println("    PERSONAGENS");
+                    m.mostrarMenu();
                     break;
                 case 7:
-                    System.out.println("\n \nOpção 7\n ");
+                    System.out.println("    SAINDO");
                     break;
                 default:
                     System.out.println("Opção Inválida!");

@@ -1,6 +1,8 @@
 package rpgenerator.domain.entidades;
 
 
+import java.util.Scanner;
+
 public class Pessoa {
 
     private int id;
@@ -15,6 +17,34 @@ public class Pessoa {
     private int sabedoria;
     private int carisma;
     private int constituicao;
+
+    public Pessoa preenchePessoa(){
+        Pessoa p = new Pessoa();
+        Scanner s = new Scanner(System.in);
+        System.out.println("Nome: ");
+        p.setNome(s.nextLine());
+        System.out.println("Vida: ");
+        p.setVida(s.nextInt());
+        System.out.println("Mana: ");
+        p.setMana(s.nextInt());
+        System.out.println("Nível: ");
+        p.setNivel(s.nextInt());
+
+        System.out.println("Força: ");
+        p.setForca(s.nextInt());
+        System.out.println("Inteligência: ");
+        p.setInteligencia(s.nextInt());
+        System.out.println("Destreza: ");
+        p.setDestreza(s.nextInt());
+        System.out.println("Sabedoria: ");
+        p.setSabedoria(s.nextInt());
+        System.out.println("Carisma: ");
+        p.setCarisma(s.nextInt());
+        System.out.println("Constituição: ");
+        p.setConstituicao(s.nextInt());
+
+        return p;
+    }
 
     public Pessoa(){
         this.nivel = 1;

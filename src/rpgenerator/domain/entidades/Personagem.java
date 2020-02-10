@@ -60,6 +60,36 @@ public class Personagem {
         return (int) rolagem.ints(1,21).findFirst().getAsInt();
     }
 
+    private int rolagem_d12(){
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1,13).findFirst().getAsInt();
+    }
+
+    private int rolagem_d10() {
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1, 11).findFirst().getAsInt();
+    }
+
+    private int rolagem_d8() {
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1, 9).findFirst().getAsInt();
+    }
+
+    private int rolagem_d6(){
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1,7).findFirst().getAsInt();
+    }
+
+    private int rolagem_d4(){
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1,5).findFirst().getAsInt();
+    }
+
+    private int rolagem_d2(){
+        Random rolagem = new Random();
+        return (int) rolagem.ints(1,3).findFirst().getAsInt();
+    }
+
     private int rolagem_dano(){
         Random rolagem = new Random();
         return (rolagem.nextInt((this.dano_max +1) - this.dano_min) ) + this.dano_min;
